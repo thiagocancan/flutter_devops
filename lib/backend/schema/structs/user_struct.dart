@@ -9,12 +9,12 @@ class UserStruct extends BaseStruct {
   UserStruct({
     String? uid,
     String? displayName,
-    String? createTime,
     String? displayEmail,
+    String? createTime,
   })  : _uid = uid,
         _displayName = displayName,
-        _createTime = createTime,
-        _displayEmail = displayEmail;
+        _displayEmail = displayEmail,
+        _createTime = createTime;
 
   // "uid" field.
   String? _uid;
@@ -30,13 +30,6 @@ class UserStruct extends BaseStruct {
 
   bool hasDisplayName() => _displayName != null;
 
-  // "create_time" field.
-  String? _createTime;
-  String get createTime => _createTime ?? '';
-  set createTime(String? val) => _createTime = val;
-
-  bool hasCreateTime() => _createTime != null;
-
   // "display_email" field.
   String? _displayEmail;
   String get displayEmail => _displayEmail ?? '';
@@ -44,11 +37,18 @@ class UserStruct extends BaseStruct {
 
   bool hasDisplayEmail() => _displayEmail != null;
 
+  // "create_time" field.
+  String? _createTime;
+  String get createTime => _createTime ?? '';
+  set createTime(String? val) => _createTime = val;
+
+  bool hasCreateTime() => _createTime != null;
+
   static UserStruct fromMap(Map<String, dynamic> data) => UserStruct(
         uid: data['uid'] as String?,
         displayName: data['display_name'] as String?,
-        createTime: data['create_time'] as String?,
         displayEmail: data['display_email'] as String?,
+        createTime: data['create_time'] as String?,
       );
 
   static UserStruct? maybeFromMap(dynamic data) =>
@@ -57,8 +57,8 @@ class UserStruct extends BaseStruct {
   Map<String, dynamic> toMap() => {
         'uid': _uid,
         'display_name': _displayName,
-        'create_time': _createTime,
         'display_email': _displayEmail,
+        'create_time': _createTime,
       }.withoutNulls;
 
   @override
@@ -71,12 +71,12 @@ class UserStruct extends BaseStruct {
           _displayName,
           ParamType.String,
         ),
-        'create_time': serializeParam(
-          _createTime,
-          ParamType.String,
-        ),
         'display_email': serializeParam(
           _displayEmail,
+          ParamType.String,
+        ),
+        'create_time': serializeParam(
+          _createTime,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -93,13 +93,13 @@ class UserStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        createTime: deserializeParam(
-          data['create_time'],
+        displayEmail: deserializeParam(
+          data['display_email'],
           ParamType.String,
           false,
         ),
-        displayEmail: deserializeParam(
-          data['display_email'],
+        createTime: deserializeParam(
+          data['create_time'],
           ParamType.String,
           false,
         ),
@@ -113,24 +113,24 @@ class UserStruct extends BaseStruct {
     return other is UserStruct &&
         uid == other.uid &&
         displayName == other.displayName &&
-        createTime == other.createTime &&
-        displayEmail == other.displayEmail;
+        displayEmail == other.displayEmail &&
+        createTime == other.createTime;
   }
 
   @override
   int get hashCode =>
-      const ListEquality().hash([uid, displayName, createTime, displayEmail]);
+      const ListEquality().hash([uid, displayName, displayEmail, createTime]);
 }
 
 UserStruct createUserStruct({
   String? uid,
   String? displayName,
-  String? createTime,
   String? displayEmail,
+  String? createTime,
 }) =>
     UserStruct(
       uid: uid,
       displayName: displayName,
-      createTime: createTime,
       displayEmail: displayEmail,
+      createTime: createTime,
     );

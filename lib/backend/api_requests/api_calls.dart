@@ -12,7 +12,8 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start Lembretes Group Code
 
 class LembretesGroup {
-  static String getBaseUrl() => 'http://127.0.0.1:8000/';
+  static String getBaseUrl() =>
+      'https://recognised-goat-dh-francisco.trycloudflare.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
   };
@@ -20,6 +21,8 @@ class LembretesGroup {
   static LoginCall loginCall = LoginCall();
   static LogoutCall logoutCall = LogoutCall();
   static GetUserCall getUserCall = GetUserCall();
+  static CreateRemindersCall createRemindersCall = CreateRemindersCall();
+  static GetRemindersCall getRemindersCall = GetRemindersCall();
 }
 
 class RegisterCall {
@@ -57,22 +60,22 @@ class RegisterCall {
     );
   }
 
-  dynamic userId(dynamic response) => getJsonField(
+  int? userId(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$.user.id''',
-      );
-  dynamic jwt(dynamic response) => getJsonField(
+      ));
+  String? jwt(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.token''',
-      );
-  dynamic name(dynamic response) => getJsonField(
+      ));
+  String? name(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.user.name''',
-      );
-  dynamic email(dynamic response) => getJsonField(
+      ));
+  String? email(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.user.email''',
-      );
+      ));
 }
 
 class LoginCall {
@@ -177,6 +180,98 @@ class GetUserCall {
       alwaysAllowBody: false,
     );
   }
+}
+
+class CreateRemindersCall {
+  Future<ApiCallResponse> call({
+    String? jwt = '',
+    String? title = '',
+    int? type,
+    String? alert = '',
+    String? repeat = '',
+    String? duration = '',
+    String? description = '',
+  }) async {
+    final baseUrl = LembretesGroup.getBaseUrl();
+
+    final ffApiRequestBody = '''
+{
+"title": "$title",
+"description": "$description",
+"type": $type,
+"alert": "$alert",
+"repeat": "$repeat",
+"duration": "$duration"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'create reminders',
+      apiUrl: '$baseUrl/api/reminders',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetRemindersCall {
+  Future<ApiCallResponse> call({
+    String? jwt = '',
+    String? userId = '',
+  }) async {
+    final baseUrl = LembretesGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'get reminders',
+      apiUrl: '$baseUrl/api/reminders/$userId',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List<String>? title(dynamic response) => (getJsonField(
+        response,
+        r'''$.reminders[:].title''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? description(dynamic response) => (getJsonField(
+        response,
+        r'''$.reminders[:].description''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List? reminders(dynamic response) => getJsonField(
+        response,
+        r'''$.reminders''',
+        true,
+      ) as List?;
 }
 
 /// End Lembretes Group Code

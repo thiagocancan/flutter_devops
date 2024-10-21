@@ -1,3 +1,5 @@
+import '/auth/custom_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/components/editarlembrete_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -97,116 +99,71 @@ class _LembreteWidgetState extends State<LembreteWidget> {
                     ),
                     child: Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  8.0, 0.0, 8.0, 0.0),
-                              child: TextFormField(
-                                controller: _model.textController1,
-                                focusNode: _model.textFieldFocusNode1,
-                                autofocus: true,
-                                textCapitalization: TextCapitalization.none,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Título',
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Manrope',
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                  hintStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Manrope',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 0.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      width: 0.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 0.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 0.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  contentPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 0.0, 0.0, 0.0),
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Manrope',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      letterSpacing: 0.0,
-                                    ),
-                                validator: _model.textController1Validator
-                                    .asValidator(context),
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  8.0, 12.0, 8.0, 0.0),
-                              child: SizedBox(
-                                width: MediaQuery.sizeOf(context).width * 1.0,
+                      child: Form(
+                        key: _model.formKey,
+                        autovalidateMode: AutovalidateMode.disabled,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 0.0, 8.0, 0.0),
                                 child: TextFormField(
-                                  controller: _model.textController2,
-                                  focusNode: _model.textFieldFocusNode2,
+                                  controller: _model.textController1,
+                                  focusNode: _model.textFieldFocusNode1,
                                   autofocus: true,
+                                  textCapitalization: TextCapitalization.none,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Descrição...',
+                                    labelText: 'Título',
                                     labelStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                        .labelMedium
                                         .override(
                                           fontFamily: 'Manrope',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                         ),
-                                    alignLabelWithHint: true,
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Manrope',
                                           letterSpacing: 0.0,
                                         ),
-                                    enabledBorder: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                    errorBorder: InputBorder.none,
-                                    focusedErrorBorder: InputBorder.none,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 0.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 0.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 0.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 0.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
                                     contentPadding:
                                         const EdgeInsetsDirectional.fromSTEB(
                                             12.0, 0.0, 0.0, 0.0),
@@ -215,16 +172,67 @@ class _LembreteWidgetState extends State<LembreteWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Manrope',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
                                         letterSpacing: 0.0,
                                       ),
-                                  maxLines: 5,
-                                  validator: _model.textController2Validator
+                                  validator: _model.textController1Validator
                                       .asValidator(context),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                            Align(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 12.0, 8.0, 0.0),
+                                child: SizedBox(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  child: TextFormField(
+                                    controller: _model.textController2,
+                                    focusNode: _model.textFieldFocusNode2,
+                                    autofocus: true,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Descrição...',
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Manrope',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      alignLabelWithHint: true,
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Manrope',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      enabledBorder: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                      errorBorder: InputBorder.none,
+                                      focusedErrorBorder: InputBorder.none,
+                                      contentPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              12.0, 0.0, 0.0, 0.0),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Manrope',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    maxLines: 5,
+                                    validator: _model.textController2Validator
+                                        .asValidator(context),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -288,7 +296,59 @@ class _LembreteWidgetState extends State<LembreteWidget> {
                           ),
                           FFButtonWidget(
                             onPressed: () async {
-                              context.safePop();
+                              if (_model.formKey.currentState == null ||
+                                  !_model.formKey.currentState!.validate()) {
+                                return;
+                              }
+                              _model.createRemindersResponse =
+                                  await LembretesGroup.createRemindersCall.call(
+                                title: _model.textController1.text,
+                                description: _model.textController2.text,
+                                type: 0,
+                                jwt: currentAuthenticationToken,
+                              );
+
+                              if ((_model.createRemindersResponse?.succeeded ??
+                                  true)) {
+                                FFAppState().clearRemindersCache();
+                                Navigator.pop(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Novo Lembrete Criado',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      getJsonField(
+                                        (_model.createRemindersResponse
+                                                ?.jsonBody ??
+                                            ''),
+                                        r'''$.message''',
+                                      ).toString(),
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).error,
+                                  ),
+                                );
+                              }
+
+                              safeSetState(() {});
                             },
                             text: 'Criar',
                             options: FFButtonOptions(

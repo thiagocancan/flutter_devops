@@ -7,3 +7,5 @@ export '/setting/setting_widget.dart' show SettingWidget;
 export '/notificaoes/notificaoes_widget.dart' show NotificaoesWidget;
 export '/perfil1/perfil1_widget.dart' show Perfil1Widget;
 export '/calendario/calendario_widget.dart' show CalendarioWidget;
+export '/termos/termos_widget.dart' show TermosWidget;
+export '/historico/historico_widget.dart' show HistoricoWidget;

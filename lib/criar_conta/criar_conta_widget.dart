@@ -1,5 +1,6 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -532,20 +533,34 @@ class _CriarContaWidgetState extends State<CriarContaWidget> {
                                         GoRouter.of(context).prepareAuthEvent();
                                         await authManager.signIn(
                                           authenticationToken:
-                                              LembretesGroup.registerCall
-                                                  .jwt(
-                                                    (_model.registerResponse
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                  )
-                                                  .toString(),
+                                              LembretesGroup.registerCall.jwt(
+                                            (_model.registerResponse
+                                                    ?.jsonBody ??
+                                                ''),
+                                          ),
                                           authUid: LembretesGroup.registerCall
                                               .userId(
                                                 (_model.registerResponse
                                                         ?.jsonBody ??
                                                     ''),
                                               )
-                                              .toString(),
+                                              ?.toString(),
+                                          userData: UserStruct(
+                                            displayName: LembretesGroup
+                                                .registerCall
+                                                .name(
+                                              (_model.registerResponse
+                                                      ?.jsonBody ??
+                                                  ''),
+                                            ),
+                                            displayEmail: LembretesGroup
+                                                .registerCall
+                                                .email(
+                                              (_model.registerResponse
+                                                      ?.jsonBody ??
+                                                  ''),
+                                            ),
+                                          ),
                                         );
 
                                         context.pushNamedAuth(

@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'boasvindas_model.dart';
 export 'boasvindas_model.dart';
 
@@ -21,6 +22,11 @@ class _BoasvindasWidgetState extends State<BoasvindasWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => BoasvindasModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setDarkModeSetting(context, ThemeMode.light);
+    });
   }
 
   @override
