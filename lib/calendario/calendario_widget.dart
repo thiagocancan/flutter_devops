@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'calendario_model.dart';
 export 'calendario_model.dart';
@@ -88,37 +87,7 @@ class _CalendarioWidgetState extends State<CalendarioWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 24.0, 0.0),
-              child: badges.Badge(
-                badgeContent: Text(
-                  '1',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Manrope',
-                        color: Colors.white,
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                showBadge: true,
-                shape: badges.BadgeShape.circle,
-                badgeColor: FlutterFlowTheme.of(context).iltan,
-                elevation: 4.0,
-                padding: const EdgeInsets.all(8.0),
-                position: badges.BadgePosition.topEnd(),
-                animationType: badges.BadgeAnimationType.scale,
-                toAnimate: true,
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
-                  child: Icon(
-                    Icons.chat_bubble_outline_outlined,
-                    color: FlutterFlowTheme.of(context).secondaryText,
-                    size: 24.0,
-                  ),
-                ),
-              ),
-            ),
-          ],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -141,7 +110,8 @@ class _CalendarioWidgetState extends State<CalendarioWidget>
                               ),
                       unselectedLabelStyle: const TextStyle(),
                       labelColor: FlutterFlowTheme.of(context).primaryText,
-                      unselectedLabelColor: Colors.black,
+                      unselectedLabelColor:
+                          FlutterFlowTheme.of(context).primaryText,
                       backgroundColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
                       unselectedBackgroundColor:
@@ -203,7 +173,7 @@ class _CalendarioWidgetState extends State<CalendarioWidget>
                                   child: FlutterFlowCalendar(
                                     color: FlutterFlowTheme.of(context).iltan,
                                     iconColor: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                        .primaryText,
                                     weekFormat: false,
                                     weekStartsMonday: true,
                                     onChange: (DateTimeRange? newSelectedDate) {
@@ -215,12 +185,16 @@ class _CalendarioWidgetState extends State<CalendarioWidget>
                                         .titleLarge
                                         .override(
                                           fontFamily: 'Manrope',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
                                           letterSpacing: 0.0,
                                         ),
                                     dayOfWeekStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Manrope',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
                                           letterSpacing: 0.0,
                                         ),
                                     dateStyle: FlutterFlowTheme.of(context)
@@ -234,6 +208,9 @@ class _CalendarioWidgetState extends State<CalendarioWidget>
                                             .titleSmall
                                             .override(
                                               fontFamily: 'Manrope',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
                                               letterSpacing: 0.0,
                                             ),
                                     inactiveDateStyle:
@@ -241,6 +218,9 @@ class _CalendarioWidgetState extends State<CalendarioWidget>
                                             .labelMedium
                                             .override(
                                               fontFamily: 'Manrope',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
                                               letterSpacing: 0.0,
                                             ),
                                   ),

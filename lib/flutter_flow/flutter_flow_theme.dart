@@ -131,9 +131,9 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color secondary = const Color(0xFF39D2C0);
   late Color tertiary = const Color(0xFF6D5FED);
   late Color alternate = const Color(0xFFE0E3E7);
-  late Color primaryText = const Color(0xFF101213);
-  late Color secondaryText = const Color(0xFF57636C);
-  late Color primaryBackground = const Color(0xFFF1F4F8);
+  late Color primaryText = const Color(0xFF000000);
+  late Color secondaryText = const Color(0xFFFFFFFF);
+  late Color primaryBackground = const Color(0xFFFFFFFF);
   late Color secondaryBackground = const Color(0xFFFFFFFF);
   late Color accent1 = const Color(0x4D9489F5);
   late Color accent2 = const Color(0x4E39D2C0);
@@ -304,8 +304,8 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color tertiary = const Color(0xFF6D5FED);
   late Color alternate = const Color(0xFF22282F);
   late Color primaryText = const Color(0xFFFFFFFF);
-  late Color secondaryText = const Color(0xFF95A1AC);
-  late Color primaryBackground = const Color(0xFF1A1F24);
+  late Color secondaryText = const Color(0xFFFFFFFF);
+  late Color primaryBackground = const Color(0xFF212830);
   late Color secondaryBackground = const Color(0xFF101213);
   late Color accent1 = const Color(0x4C9489F5);
   late Color accent2 = const Color(0x4E39D2C0);
@@ -316,7 +316,7 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color error = const Color(0xFFE74852);
   late Color info = const Color(0xFFFFFFFF);
 
-  late Color iltan = const Color(0xFF7A118F);
+  late Color iltan = const Color(0xFF00BFFF);
 }
 
 extension TextStyleHelper on TextStyle {

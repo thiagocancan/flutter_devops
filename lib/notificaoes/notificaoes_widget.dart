@@ -37,7 +37,7 @@ class _NotificaoesWidgetState extends State<NotificaoesWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           leading: Align(
             alignment: const AlignmentDirectional(-1.0, 0.0),
@@ -262,7 +262,7 @@ class _NotificaoesWidgetState extends State<NotificaoesWidget> {
                                       .override(
                                         fontFamily: 'Manrope',
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
+                                            .primaryText,
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -440,7 +440,7 @@ class _NotificaoesWidgetState extends State<NotificaoesWidget> {
                                       .override(
                                         fontFamily: 'Manrope',
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
+                                            .primaryText,
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -563,7 +563,7 @@ class _NotificaoesWidgetState extends State<NotificaoesWidget> {
                                       .override(
                                         fontFamily: 'Manrope',
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
+                                            .primaryText,
                                         letterSpacing: 0.0,
                                       ),
                                 ),
@@ -667,6 +667,8 @@ class _NotificaoesWidgetState extends State<NotificaoesWidget> {
                                       .labelSmall
                                       .override(
                                         fontFamily: 'Manrope',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
                                         letterSpacing: 0.0,
                                       ),
                                 ),

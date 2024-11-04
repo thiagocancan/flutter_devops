@@ -11,10 +11,12 @@ class UserStruct extends BaseStruct {
     String? displayName,
     String? displayEmail,
     String? createTime,
+    String? img,
   })  : _uid = uid,
         _displayName = displayName,
         _displayEmail = displayEmail,
-        _createTime = createTime;
+        _createTime = createTime,
+        _img = img;
 
   // "uid" field.
   String? _uid;
@@ -44,11 +46,19 @@ class UserStruct extends BaseStruct {
 
   bool hasCreateTime() => _createTime != null;
 
+  // "img" field.
+  String? _img;
+  String get img => _img ?? '';
+  set img(String? val) => _img = val;
+
+  bool hasImg() => _img != null;
+
   static UserStruct fromMap(Map<String, dynamic> data) => UserStruct(
         uid: data['uid'] as String?,
         displayName: data['display_name'] as String?,
         displayEmail: data['display_email'] as String?,
         createTime: data['create_time'] as String?,
+        img: data['img'] as String?,
       );
 
   static UserStruct? maybeFromMap(dynamic data) =>
@@ -59,6 +69,7 @@ class UserStruct extends BaseStruct {
         'display_name': _displayName,
         'display_email': _displayEmail,
         'create_time': _createTime,
+        'img': _img,
       }.withoutNulls;
 
   @override
@@ -77,6 +88,10 @@ class UserStruct extends BaseStruct {
         ),
         'create_time': serializeParam(
           _createTime,
+          ParamType.String,
+        ),
+        'img': serializeParam(
+          _img,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -103,6 +118,11 @@ class UserStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        img: deserializeParam(
+          data['img'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -114,12 +134,13 @@ class UserStruct extends BaseStruct {
         uid == other.uid &&
         displayName == other.displayName &&
         displayEmail == other.displayEmail &&
-        createTime == other.createTime;
+        createTime == other.createTime &&
+        img == other.img;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([uid, displayName, displayEmail, createTime]);
+  int get hashCode => const ListEquality()
+      .hash([uid, displayName, displayEmail, createTime, img]);
 }
 
 UserStruct createUserStruct({
@@ -127,10 +148,12 @@ UserStruct createUserStruct({
   String? displayName,
   String? displayEmail,
   String? createTime,
+  String? img,
 }) =>
     UserStruct(
       uid: uid,
       displayName: displayName,
       displayEmail: displayEmail,
       createTime: createTime,
+      img: img,
     );

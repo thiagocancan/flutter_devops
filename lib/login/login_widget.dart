@@ -130,6 +130,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       .labelMedium
                                       .override(
                                         fontFamily: 'Manrope',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
                                         fontSize: 14.0,
                                         letterSpacing: 0.0,
                                       ),
@@ -158,6 +160,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                     .labelMedium
                                                     .override(
                                                       fontFamily: 'Manrope',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
@@ -205,7 +211,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             filled: true,
                                             fillColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .alternate,
+                                                    .accent4,
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -239,6 +245,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                     .labelMedium
                                                     .override(
                                                       fontFamily: 'Manrope',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
@@ -286,7 +296,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             filled: true,
                                             fillColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .alternate,
+                                                    .accent4,
                                             suffixIcon: InkWell(
                                               onTap: () => safeSetState(
                                                 () => _model
@@ -302,7 +312,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                         .visibility_off_outlined,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryText,
+                                                        .primaryText,
                                                 size: 22.0,
                                               ),
                                             ),
@@ -345,37 +355,39 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                 .prepareAuthEvent();
                                             await authManager.signIn(
                                               authenticationToken:
-                                                  LembretesGroup.loginCall
-                                                      .jwt(
-                                                        (_model.loginResponse
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      )
-                                                      .toString(),
+                                                  LembretesGroup.loginCall.jwt(
+                                                (_model.loginResponse
+                                                        ?.jsonBody ??
+                                                    ''),
+                                              ),
                                               authUid: LembretesGroup.loginCall
                                                   .userId(
                                                     (_model.loginResponse
                                                             ?.jsonBody ??
                                                         ''),
                                                   )
-                                                  .toString(),
+                                                  ?.toString(),
                                               userData: UserStruct(
-                                                displayName:
-                                                    LembretesGroup.loginCall
-                                                        .name(
-                                                          (_model.loginResponse
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                        )
-                                                        .toString(),
-                                                displayEmail:
-                                                    LembretesGroup.loginCall
-                                                        .email(
-                                                          (_model.loginResponse
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                        )
-                                                        .toString(),
+                                                displayName: LembretesGroup
+                                                    .loginCall
+                                                    .name(
+                                                  (_model.loginResponse
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ),
+                                                displayEmail: LembretesGroup
+                                                    .loginCall
+                                                    .email(
+                                                  (_model.loginResponse
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ),
+                                                img: getJsonField(
+                                                  (_model.loginResponse
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$.user.image''',
+                                                ).toString(),
                                               ),
                                             );
 
@@ -432,9 +444,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                           elevation: 3.0,
-                                          borderSide: const BorderSide(
-                                            width: 1.0,
-                                          ),
                                           borderRadius:
                                               BorderRadius.circular(12.0),
                                         ),

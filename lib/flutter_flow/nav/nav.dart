@@ -103,9 +103,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const HomeWidget(),
         ),
         FFRoute(
-          name: 'setting',
-          path: '/setting',
-          builder: (context, params) => const SettingWidget(),
+          name: 'Historico',
+          path: '/historico',
+          builder: (context, params) => const HistoricoWidget(),
         ),
         FFRoute(
           name: 'notificaoes',
@@ -123,14 +123,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const CalendarioWidget(),
         ),
         FFRoute(
+          name: 'editar_usuario',
+          path: '/editarUsuario',
+          builder: (context, params) => const EditarUsuarioWidget(),
+        ),
+        FFRoute(
           name: 'Termos',
           path: '/termos',
           builder: (context, params) => const TermosWidget(),
-        ),
-        FFRoute(
-          name: 'Historico',
-          path: '/historico',
-          builder: (context, params) => const HistoricoWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

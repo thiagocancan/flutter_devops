@@ -4,9 +4,15 @@ import 'lembrete_widget.dart' show LembreteWidget;
 import 'package:flutter/material.dart';
 
 class LembreteModel extends FlutterFlowModel<LembreteWidget> {
+  ///  Local state fields for this component.
+
+  Color? selectedColor = const Color(0xff9489f5);
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
+  // State field(s) for Switch widget.
+  bool? switchValue;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
@@ -25,6 +31,7 @@ class LembreteModel extends FlutterFlowModel<LembreteWidget> {
   String? Function(BuildContext, String?)? textController2Validator;
   // Stores action output result for [Backend Call - API (create reminders)] action in Button widget.
   ApiCallResponse? createRemindersResponse;
+  Color? colorPicked;
 
   @override
   void initState(BuildContext context) {

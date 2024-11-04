@@ -13,7 +13,7 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
 class LembretesGroup {
   static String getBaseUrl() =>
-      'https://recognised-goat-dh-francisco.trycloudflare.com';
+      'https://therefore-tyler-walked-protecting.trycloudflare.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
   };
@@ -23,6 +23,8 @@ class LembretesGroup {
   static GetUserCall getUserCall = GetUserCall();
   static CreateRemindersCall createRemindersCall = CreateRemindersCall();
   static GetRemindersCall getRemindersCall = GetRemindersCall();
+  static DeleteRemindersCall deleteRemindersCall = DeleteRemindersCall();
+  static UpdateUserCall updateUserCall = UpdateUserCall();
 }
 
 class RegisterCall {
@@ -109,26 +111,26 @@ class LoginCall {
     );
   }
 
-  dynamic userId(dynamic response) => getJsonField(
+  int? userId(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$.user.id''',
-      );
-  dynamic jwt(dynamic response) => getJsonField(
+      ));
+  String? jwt(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.token''',
-      );
+      ));
   dynamic message(dynamic response) => getJsonField(
         response,
         r'''$.message''',
       );
-  dynamic name(dynamic response) => getJsonField(
+  String? name(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.user.name''',
-      );
-  dynamic email(dynamic response) => getJsonField(
+      ));
+  String? email(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.user.email''',
-      );
+      ));
 }
 
 class LogoutCall {
@@ -191,6 +193,7 @@ class CreateRemindersCall {
     String? repeat = '',
     String? duration = '',
     String? description = '',
+    String? color = '',
   }) async {
     final baseUrl = LembretesGroup.getBaseUrl();
 
@@ -201,7 +204,8 @@ class CreateRemindersCall {
 "type": $type,
 "alert": "$alert",
 "repeat": "$repeat",
-"duration": "$duration"
+"duration": "$duration",
+"color": "$color"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'create reminders',
@@ -227,13 +231,12 @@ class CreateRemindersCall {
 class GetRemindersCall {
   Future<ApiCallResponse> call({
     String? jwt = '',
-    String? userId = '',
   }) async {
     final baseUrl = LembretesGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
       callName: 'get reminders',
-      apiUrl: '$baseUrl/api/reminders/$userId',
+      apiUrl: '$baseUrl/api/reminders',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -272,6 +275,66 @@ class GetRemindersCall {
         r'''$.reminders''',
         true,
       ) as List?;
+}
+
+class DeleteRemindersCall {
+  Future<ApiCallResponse> call({
+    String? jwt = '',
+    String? reminderId = '',
+  }) async {
+    final baseUrl = LembretesGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'delete reminders',
+      apiUrl: '$baseUrl/api/reminders/$reminderId',
+      callType: ApiCallType.DELETE,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateUserCall {
+  Future<ApiCallResponse> call({
+    String? jwt = '',
+    String? image = '',
+    String? name = '',
+  }) async {
+    final baseUrl = LembretesGroup.getBaseUrl();
+
+    final ffApiRequestBody = '''
+{
+  "name": "$name",
+  "image": "$image"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'update user',
+      apiUrl: '$baseUrl/api/user',
+      callType: ApiCallType.PUT,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $jwt',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 /// End Lembretes Group Code

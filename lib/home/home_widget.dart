@@ -1,12 +1,17 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/components/delete_reminder_widget.dart';
 import '/components/lembrete_widget.dart';
 import '/components/naopossuilembretes_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'home_model.dart';
 export 'home_model.dart';
 
@@ -26,6 +31,12 @@ class _HomeWidgetState extends State<HomeWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => HomeModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.foto = functions.base64img(currentUserData!.img);
+      safeSetState(() {});
+    });
   }
 
   @override
@@ -55,10 +66,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  context.pushNamed('notificaoes');
+                  context.pushNamed('Historico');
                 },
                 child: Icon(
-                  Icons.notifications_rounded,
+                  Icons.history,
                   color: FlutterFlowTheme.of(context).iltan,
                   size: 38.0,
                 ),
@@ -95,9 +106,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                   ),
-                  child: Image.network(
-                    'https://images.unsplash.com/photo-1624140716840-5d89f311f500?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyfHxtYW58ZW58MHx8fHwxNzI1MjE0MDI2fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                  child: Image.memory(
+                    _model.foto?.bytes ?? Uint8List.fromList([]),
                     fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Image.asset(
+                      'assets/images/error_image.png',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
@@ -189,7 +204,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           size: 24.0,
                         ),
                         fillColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
+                            FlutterFlowTheme.of(context).primaryBackground,
                         elevation: 2.0,
                         borderColor: FlutterFlowTheme.of(context).primaryText,
                         borderWidth: 1.0,
@@ -210,7 +225,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                     future: FFAppState().reminders(
                       requestFn: () => LembretesGroup.getRemindersCall.call(
                         jwt: currentAuthenticationToken,
-                        userId: currentUserUid,
                       ),
                     ),
                     builder: (context, snapshot) {
@@ -270,7 +284,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     maxHeight: 500.0,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: colorFromCssString(
+                                      getJsonField(
+                                        remindersItem,
+                                        r'''$.color''',
+                                      ).toString(),
+                                      defaultColor: Colors.black,
+                                    ),
                                     borderRadius: BorderRadius.circular(12.0),
                                   ),
                                   child: Padding(
@@ -283,31 +303,88 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 12.0, 0.0, 0.0),
-                                            child: Text(
-                                              getJsonField(
-                                                remindersItem,
-                                                r'''$.title''',
-                                              ).toString(),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Manrope',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  -1.0, 0.0),
+                                              child: Text(
+                                                getJsonField(
+                                                  remindersItem,
+                                                  r'''$.title''',
+                                                ).toString(),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Manrope',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
                                             ),
-                                          ),
+                                            Builder(
+                                              builder: (context) =>
+                                                  FlutterFlowIconButton(
+                                                borderColor: Colors.white,
+                                                borderRadius: 8.0,
+                                                buttonSize: 40.0,
+                                                icon: const Icon(
+                                                  Icons.keyboard_control_sharp,
+                                                  color: Colors.white,
+                                                  size: 24.0,
+                                                ),
+                                                onPressed: () async {
+                                                  await showAlignedDialog(
+                                                    context: context,
+                                                    isGlobal: false,
+                                                    avoidOverflow: false,
+                                                    targetAnchor:
+                                                        const AlignmentDirectional(
+                                                                -7.5, 5.0)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    followerAnchor:
+                                                        const AlignmentDirectional(
+                                                                0.0, 0.0)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    builder: (dialogContext) {
+                                                      return Material(
+                                                        color:
+                                                            Colors.transparent,
+                                                        child: GestureDetector(
+                                                          onTap: () =>
+                                                              FocusScope.of(
+                                                                      dialogContext)
+                                                                  .unfocus(),
+                                                          child:
+                                                              DeleteReminderWidget(
+                                                            reminderId:
+                                                                getJsonField(
+                                                              remindersItem,
+                                                              r'''$.id''',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                         if (getJsonField(
                                               remindersItem,
@@ -334,7 +411,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           fontFamily: 'Manrope',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primaryBackground,
+                                                              .secondaryText,
                                                           fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                         ),
@@ -383,7 +460,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondaryText,
+                                                              .primaryText,
                                                       size: 18.0,
                                                     ),
                                                   ),
@@ -392,7 +469,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         const AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Text(
-                                                      '8 de set., 08:00',
+                                                      'Data',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium

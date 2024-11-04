@@ -4,7 +4,9 @@ import '/components/editarlembrete_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutterflow_colorpicker/flutterflow_colorpicker.dart';
 import 'lembrete_model.dart';
 export 'lembrete_model.dart';
 
@@ -29,6 +31,7 @@ class _LembreteWidgetState extends State<LembreteWidget> {
     super.initState();
     _model = createModel(context, () => LembreteModel());
 
+    _model.switchValue = false;
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
@@ -92,7 +95,9 @@ class _LembreteWidgetState extends State<LembreteWidget> {
                   ),
                   Container(
                     width: MediaQuery.sizeOf(context).width * 1.0,
-                    height: 192.0,
+                    constraints: const BoxConstraints(
+                      minHeight: 180.0,
+                    ),
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).alternate,
                       borderRadius: BorderRadius.circular(12.0),
@@ -106,6 +111,47 @@ class _LembreteWidgetState extends State<LembreteWidget> {
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  'Remedio',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Manrope',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        fontSize: 16.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                                Switch.adaptive(
+                                  value: _model.switchValue!,
+                                  onChanged: (newValue) async {
+                                    safeSetState(
+                                        () => _model.switchValue = newValue);
+                                  },
+                                  activeColor: const Color(0xFF02000D),
+                                  activeTrackColor: const Color(0xFFE53838),
+                                  inactiveTrackColor:
+                                      FlutterFlowTheme.of(context).secondary,
+                                  inactiveThumbColor: Colors.black,
+                                ),
+                                Text(
+                                  'Lembretes',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Manrope',
+                                        color: const Color(0xFFE53838),
+                                        fontSize: 16.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ],
+                            ),
                             Align(
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Padding(
@@ -123,6 +169,8 @@ class _LembreteWidgetState extends State<LembreteWidget> {
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Manrope',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
                                           fontSize: 14.0,
                                           letterSpacing: 0.0,
                                         ),
@@ -200,7 +248,7 @@ class _LembreteWidgetState extends State<LembreteWidget> {
                                           .override(
                                             fontFamily: 'Manrope',
                                             color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
+                                                .primaryText,
                                             letterSpacing: 0.0,
                                           ),
                                       alignLabelWithHint: true,
@@ -216,7 +264,7 @@ class _LembreteWidgetState extends State<LembreteWidget> {
                                       focusedErrorBorder: InputBorder.none,
                                       contentPadding:
                                           const EdgeInsetsDirectional.fromSTEB(
-                                              12.0, 0.0, 0.0, 0.0),
+                                              12.0, 0.0, 12.0, 0.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -296,16 +344,19 @@ class _LembreteWidgetState extends State<LembreteWidget> {
                           ),
                           FFButtonWidget(
                             onPressed: () async {
-                              if (_model.formKey.currentState == null ||
-                                  !_model.formKey.currentState!.validate()) {
-                                return;
+                              if (_model.formKey.currentState != null) {
+                                _model.formKey.currentState!.validate();
                               }
                               _model.createRemindersResponse =
                                   await LembretesGroup.createRemindersCall.call(
                                 title: _model.textController1.text,
                                 description: _model.textController2.text,
-                                type: 0,
+                                type: _model.switchValue! ? 0 : 1,
                                 jwt: currentAuthenticationToken,
+                                color: _model.colorPicked != null
+                                    ? functions
+                                        .showFFColorPicker(_model.colorPicked!)
+                                    : '#9489f5',
                               );
 
                               if ((_model.createRemindersResponse?.succeeded ??
@@ -374,6 +425,56 @@ class _LembreteWidgetState extends State<LembreteWidget> {
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              final colorPickedColor = await showFFColorPicker(
+                                context,
+                                currentColor: _model.colorPicked ??=
+                                    const Color(0xFF9489F5),
+                                showRecentColors: true,
+                                allowOpacity: true,
+                                textColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                secondaryTextColor:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                backgroundColor: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                primaryButtonBackgroundColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                primaryButtonTextColor: Colors.white,
+                                primaryButtonBorderColor: Colors.transparent,
+                                displayAsBottomSheet: isMobileWidth(context),
+                              );
+
+                              if (colorPickedColor != null) {
+                                safeSetState(() =>
+                                    _model.colorPicked = colorPickedColor);
+                              }
+
+                              _model.selectedColor = _model.colorPicked;
+                              safeSetState(() {});
+                            },
+                            child: Container(
+                              width: 50.0,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                color: valueOrDefault<Color>(
+                                  _model.colorPicked,
+                                  const Color(0xFF9489F5),
+                                ),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                Icons.color_lens_sharp,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 30.0,
+                              ),
                             ),
                           ),
                         ],

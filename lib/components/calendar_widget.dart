@@ -67,7 +67,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                           const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                       child: FlutterFlowCalendar(
                         color: const Color(0xFF00BFFF),
-                        iconColor: FlutterFlowTheme.of(context).secondaryText,
+                        iconColor: FlutterFlowTheme.of(context).primaryText,
                         weekFormat: false,
                         weekStartsMonday: false,
                         rowHeight: 40.0,
@@ -80,24 +80,29 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                                   fontFamily: 'Roboto',
                                   letterSpacing: 0.0,
                                 ),
-                        dayOfWeekStyle:
-                            FlutterFlowTheme.of(context).labelLarge.override(
-                                  fontFamily: 'Manrope',
-                                  letterSpacing: 0.0,
-                                ),
+                        dayOfWeekStyle: FlutterFlowTheme.of(context)
+                            .labelLarge
+                            .override(
+                              fontFamily: 'Manrope',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
+                            ),
                         dateStyle:
                             FlutterFlowTheme.of(context).bodyMedium.override(
                                   fontFamily: 'Manrope',
                                   letterSpacing: 0.0,
                                 ),
-                        selectedDateStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Manrope',
-                                  letterSpacing: 0.0,
-                                ),
+                        selectedDateStyle: FlutterFlowTheme.of(context)
+                            .titleSmall
+                            .override(
+                              fontFamily: 'Manrope',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
+                            ),
                         inactiveDateStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: 'Manrope',
+                                  color: FlutterFlowTheme.of(context).iltan,
                                   letterSpacing: 0.0,
                                 ),
                       ),

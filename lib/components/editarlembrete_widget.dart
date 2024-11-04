@@ -77,7 +77,7 @@ class _EditarlembreteWidgetState extends State<EditarlembreteWidget> {
                   ),
                   Divider(
                     thickness: 0.5,
-                    color: FlutterFlowTheme.of(context).secondaryText,
+                    color: FlutterFlowTheme.of(context).primaryText,
                   ),
                   InkWell(
                     splashColor: Colors.transparent,
@@ -115,7 +115,7 @@ class _EditarlembreteWidgetState extends State<EditarlembreteWidget> {
                                     fontFamily: 'Manrope',
                                     fontSize: 15.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.normal,
                                   ),
                             ),
                           ),
@@ -125,7 +125,7 @@ class _EditarlembreteWidgetState extends State<EditarlembreteWidget> {
                               0.0, 0.0, 12.0, 0.0),
                           child: Icon(
                             Icons.arrow_drop_down,
-                            color: FlutterFlowTheme.of(context).secondaryText,
+                            color: FlutterFlowTheme.of(context).primaryText,
                             size: 24.0,
                           ),
                         ),
@@ -134,7 +134,7 @@ class _EditarlembreteWidgetState extends State<EditarlembreteWidget> {
                   ),
                   Divider(
                     thickness: 0.5,
-                    color: FlutterFlowTheme.of(context).secondaryText,
+                    color: FlutterFlowTheme.of(context).primaryText,
                   ),
                   Align(
                     alignment: const AlignmentDirectional(0.0, 0.0),
@@ -156,7 +156,7 @@ class _EditarlembreteWidgetState extends State<EditarlembreteWidget> {
                                     fontFamily: 'Manrope',
                                     fontSize: 15.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.normal,
                                   ),
                             ),
                           ),
@@ -166,7 +166,7 @@ class _EditarlembreteWidgetState extends State<EditarlembreteWidget> {
                               0.0, 0.0, 12.0, 0.0),
                           child: Icon(
                             Icons.arrow_drop_down,
-                            color: FlutterFlowTheme.of(context).secondaryText,
+                            color: FlutterFlowTheme.of(context).primaryText,
                             size: 24.0,
                           ),
                         ),
@@ -175,7 +175,7 @@ class _EditarlembreteWidgetState extends State<EditarlembreteWidget> {
                   ),
                   Divider(
                     thickness: 0.5,
-                    color: FlutterFlowTheme.of(context).secondaryText,
+                    color: FlutterFlowTheme.of(context).primaryText,
                   ),
                   Align(
                     alignment: const AlignmentDirectional(0.0, 0.0),
@@ -197,7 +197,7 @@ class _EditarlembreteWidgetState extends State<EditarlembreteWidget> {
                                     fontFamily: 'Manrope',
                                     fontSize: 15.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.normal,
                                   ),
                             ),
                           ),
@@ -207,7 +207,7 @@ class _EditarlembreteWidgetState extends State<EditarlembreteWidget> {
                               0.0, 0.0, 12.0, 0.0),
                           child: Icon(
                             Icons.arrow_drop_down,
-                            color: FlutterFlowTheme.of(context).secondaryText,
+                            color: FlutterFlowTheme.of(context).primaryText,
                             size: 24.0,
                           ),
                         ),
@@ -216,7 +216,7 @@ class _EditarlembreteWidgetState extends State<EditarlembreteWidget> {
                   ),
                   Divider(
                     thickness: 0.5,
-                    color: FlutterFlowTheme.of(context).secondaryText,
+                    color: FlutterFlowTheme.of(context).primaryText,
                   ),
                   Align(
                     alignment: const AlignmentDirectional(0.0, 0.0),
@@ -238,7 +238,7 @@ class _EditarlembreteWidgetState extends State<EditarlembreteWidget> {
                                     fontFamily: 'Manrope',
                                     fontSize: 15.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.normal,
                                   ),
                             ),
                           ),
@@ -248,7 +248,7 @@ class _EditarlembreteWidgetState extends State<EditarlembreteWidget> {
                               0.0, 0.0, 12.0, 0.0),
                           child: Icon(
                             Icons.arrow_drop_down,
-                            color: FlutterFlowTheme.of(context).secondaryText,
+                            color: FlutterFlowTheme.of(context).primaryText,
                             size: 24.0,
                           ),
                         ),

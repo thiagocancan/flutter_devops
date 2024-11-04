@@ -4,6 +4,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'criar_conta_model.dart';
 export 'criar_conta_model.dart';
@@ -164,6 +165,10 @@ class _CriarContaWidgetState extends State<CriarContaWidget> {
                                                     .labelMedium
                                                     .override(
                                                       fontFamily: 'Manrope',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
@@ -211,7 +216,7 @@ class _CriarContaWidgetState extends State<CriarContaWidget> {
                                             filled: true,
                                             fillColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .alternate,
+                                                    .accent4,
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -244,6 +249,10 @@ class _CriarContaWidgetState extends State<CriarContaWidget> {
                                                     .labelMedium
                                                     .override(
                                                       fontFamily: 'Manrope',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
@@ -291,7 +300,7 @@ class _CriarContaWidgetState extends State<CriarContaWidget> {
                                             filled: true,
                                             fillColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .alternate,
+                                                    .accent4,
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -325,6 +334,10 @@ class _CriarContaWidgetState extends State<CriarContaWidget> {
                                                     .labelMedium
                                                     .override(
                                                       fontFamily: 'Manrope',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
@@ -372,7 +385,7 @@ class _CriarContaWidgetState extends State<CriarContaWidget> {
                                             filled: true,
                                             fillColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .alternate,
+                                                    .accent4,
                                             suffixIcon: InkWell(
                                               onTap: () => safeSetState(
                                                 () => _model
@@ -423,6 +436,10 @@ class _CriarContaWidgetState extends State<CriarContaWidget> {
                                                     .labelMedium
                                                     .override(
                                                       fontFamily: 'Manrope',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
                                                       letterSpacing: 0.0,
                                                     ),
                                             hintStyle:
@@ -470,7 +487,7 @@ class _CriarContaWidgetState extends State<CriarContaWidget> {
                                             filled: true,
                                             fillColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .alternate,
+                                                    .accent4,
                                             suffixIcon: InkWell(
                                               onTap: () => safeSetState(
                                                 () => _model
@@ -649,15 +666,20 @@ class _CriarContaWidgetState extends State<CriarContaWidget> {
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
+                                            fontWeight: FontWeight.w100,
                                           ),
                                     ),
-                                    const TextSpan(
+                                    TextSpan(
                                       text: 'termos de uso',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Color(0xFF00BFFF),
                                         fontWeight: FontWeight.bold,
                                       ),
+                                      mouseCursor: SystemMouseCursors.click,
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () async {
+                                          context.pushNamed('Termos');
+                                        },
                                     ),
                                     const TextSpan(
                                       text: '.',
@@ -669,6 +691,7 @@ class _CriarContaWidgetState extends State<CriarContaWidget> {
                                       .override(
                                         fontFamily: 'Manrope',
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w300,
                                       ),
                                 ),
                                 textAlign: TextAlign.start,

@@ -50,76 +50,32 @@ class _BoasvindasWidgetState extends State<BoasvindasWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: MediaQuery.sizeOf(context).width * 1.0,
-                        height: MediaQuery.sizeOf(context).height * 0.2,
-                        decoration: const BoxDecoration(),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Text(
-                                'Out',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Manrope',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      fontSize: 36.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 12.0),
-                              child: Container(
-                                width: 123.0,
-                                height: 63.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).iltan,
-                                ),
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Text(
-                                    'Notes',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Manrope',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          fontSize: 36.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              'Não deixe o esquecimento atrapalhar seus planos',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+              Container(
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 0.291,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: Image.asset(
+                      'assets/images/Project_Capture_(22).jpg',
+                    ).image,
+                  ),
+                ),
+                child: Align(
+                  alignment: const AlignmentDirectional(0.01, 0.0),
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 60.0, 0.0, 0.0),
+                    child: Text(
+                      'N O T E S',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Coming Soon',
+                            color: const Color(0xFF00BFFF),
+                            fontSize: 23.0,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
                   ),
                 ),
               ),
@@ -130,7 +86,7 @@ class _BoasvindasWidgetState extends State<BoasvindasWidget> {
                     alignment: const AlignmentDirectional(0.0, 10.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 250.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 110.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           context.pushNamed('CriarConta');
