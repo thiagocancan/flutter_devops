@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'boasvindas_widget.dart' show BoasvindasWidget;
 import 'package:flutter/material.dart';
 

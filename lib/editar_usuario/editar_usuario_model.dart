@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'editar_usuario_widget.dart' show EditarUsuarioWidget;
 import 'package:flutter/material.dart';
 
@@ -10,8 +11,8 @@ class EditarUsuarioModel extends FlutterFlowModel<EditarUsuarioWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
+  bool isDataUploading_uploadDataUd0 = false;
+  FFUploadedFile uploadedLocalFile_uploadDataUd0 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // Stores action output result for [Custom Action - base64convert] action in Container widget.
@@ -20,7 +21,7 @@ class EditarUsuarioModel extends FlutterFlowModel<EditarUsuarioWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Backend Call - API (update user)] action in Button widget.
+  // Stores action output result for [Backend Call - API (Update User)] action in Button widget.
   ApiCallResponse? updateuserresponse;
 
   @override

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class DeleteReminderModel extends FlutterFlowModel<DeleteReminderWidget> {
   ///  State fields for stateful widgets in this component.
 
-  // Stores action output result for [Backend Call - API (delete reminders)] action in Button widget.
+  // Stores action output result for [Backend Call - API (Delete Reminders)] action in Button widget.
   ApiCallResponse? deleteReminderResponse;
 
   @override

@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'login_widget.dart' show LoginWidget;
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,9 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   String? Function(BuildContext, String?)? textController1Validator;
   String? _textController1Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Digite o email';
+      return FFLocalizations.of(context).getText(
+        'zutahjp8' /* Digite o email */,
+      );
     }
 
     if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
@@ -29,11 +32,15 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   String? Function(BuildContext, String?)? textController2Validator;
   String? _textController2Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Digite a senha';
+      return FFLocalizations.of(context).getText(
+        '59uke7kl' /* Digite a senha */,
+      );
     }
 
     if (val.length < 6) {
-      return 'Senha mínima de 6 caracteres';
+      return FFLocalizations.of(context).getText(
+        'm11jlmnk' /* Senha mínima de 6 caracteres */,
+      );
     }
 
     return null;

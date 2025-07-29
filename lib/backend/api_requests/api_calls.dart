@@ -12,8 +12,10 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start Lembretes Group Code
 
 class LembretesGroup {
-  static String getBaseUrl() =>
-      'https://therefore-tyler-walked-protecting.trycloudflare.com';
+  static String getBaseUrl({
+    String? urlBase = '',
+  }) =>
+      '${urlBase}';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
   };
@@ -25,6 +27,9 @@ class LembretesGroup {
   static GetRemindersCall getRemindersCall = GetRemindersCall();
   static DeleteRemindersCall deleteRemindersCall = DeleteRemindersCall();
   static UpdateUserCall updateUserCall = UpdateUserCall();
+  static DeleteRemidersHistoryCall deleteRemidersHistoryCall =
+      DeleteRemidersHistoryCall();
+  static UpdateReminderCall updateReminderCall = UpdateReminderCall();
 }
 
 class RegisterCall {
@@ -33,19 +38,22 @@ class RegisterCall {
     String? email = '',
     String? password = '',
     String? passwordConfirmation = '',
+    String? urlBase = '',
   }) async {
-    final baseUrl = LembretesGroup.getBaseUrl();
+    final baseUrl = LembretesGroup.getBaseUrl(
+      urlBase: urlBase,
+    );
 
     final ffApiRequestBody = '''
 {
-"name": "$name",
-"email": "$email",
-"password": "$password",
-"password_confirmation": "$passwordConfirmation"
+"name": "${name}",
+"email": "${email}",
+"password": "${password}",
+"password_confirmation": "${passwordConfirmation}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Register',
-      apiUrl: '$baseUrl/api/register',
+      apiUrl: '${baseUrl}/api/register',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -84,17 +92,20 @@ class LoginCall {
   Future<ApiCallResponse> call({
     String? email = '',
     String? password = '',
+    String? urlBase = '',
   }) async {
-    final baseUrl = LembretesGroup.getBaseUrl();
+    final baseUrl = LembretesGroup.getBaseUrl(
+      urlBase: urlBase,
+    );
 
     final ffApiRequestBody = '''
 {
-  "email": "$email",
-  "password": "$password"
+  "email": "${email}",
+  "password": "${password}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Login',
-      apiUrl: '$baseUrl/api/login',
+      apiUrl: '${baseUrl}/api/login',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -136,16 +147,19 @@ class LoginCall {
 class LogoutCall {
   Future<ApiCallResponse> call({
     String? jwt = '',
+    String? urlBase = '',
   }) async {
-    final baseUrl = LembretesGroup.getBaseUrl();
+    final baseUrl = LembretesGroup.getBaseUrl(
+      urlBase: urlBase,
+    );
 
     return ApiManager.instance.makeApiCall(
       callName: 'Logout',
-      apiUrl: '$baseUrl/api/logout',
+      apiUrl: '${baseUrl}/api/logout',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $jwt',
+        'Authorization': 'Bearer ${jwt}',
       },
       params: {},
       bodyType: BodyType.JSON,
@@ -162,16 +176,19 @@ class LogoutCall {
 class GetUserCall {
   Future<ApiCallResponse> call({
     String? jwt = '',
+    String? urlBase = '',
   }) async {
-    final baseUrl = LembretesGroup.getBaseUrl();
+    final baseUrl = LembretesGroup.getBaseUrl(
+      urlBase: urlBase,
+    );
 
     return ApiManager.instance.makeApiCall(
       callName: 'Get user',
-      apiUrl: '$baseUrl/api/user',
+      apiUrl: '${baseUrl}/api/user',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $jwt',
+        'Authorization': 'Bearer ${jwt}',
       },
       params: {},
       returnBody: true,
@@ -194,26 +211,29 @@ class CreateRemindersCall {
     String? duration = '',
     String? description = '',
     String? color = '',
+    String? urlBase = '',
   }) async {
-    final baseUrl = LembretesGroup.getBaseUrl();
+    final baseUrl = LembretesGroup.getBaseUrl(
+      urlBase: urlBase,
+    );
 
     final ffApiRequestBody = '''
 {
-"title": "$title",
-"description": "$description",
-"type": $type,
-"alert": "$alert",
-"repeat": "$repeat",
-"duration": "$duration",
-"color": "$color"
+"title": "${title}",
+"description": "${description}",
+"type": ${type},
+"alert": "${alert}",
+"repeat": "${repeat}",
+"duration": "${duration}",
+"color": "${color}"
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'create reminders',
-      apiUrl: '$baseUrl/api/reminders',
+      callName: 'Create Reminders',
+      apiUrl: '${baseUrl}/api/reminders',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $jwt',
+        'Authorization': 'Bearer ${jwt}',
       },
       params: {},
       body: ffApiRequestBody,
@@ -231,16 +251,19 @@ class CreateRemindersCall {
 class GetRemindersCall {
   Future<ApiCallResponse> call({
     String? jwt = '',
+    String? urlBase = '',
   }) async {
-    final baseUrl = LembretesGroup.getBaseUrl();
+    final baseUrl = LembretesGroup.getBaseUrl(
+      urlBase: urlBase,
+    );
 
     return ApiManager.instance.makeApiCall(
-      callName: 'get reminders',
-      apiUrl: '$baseUrl/api/reminders',
+      callName: 'Get Reminders',
+      apiUrl: '${baseUrl}/api/reminders',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $jwt',
+        'Authorization': 'Bearer ${jwt}',
       },
       params: {},
       returnBody: true,
@@ -281,16 +304,19 @@ class DeleteRemindersCall {
   Future<ApiCallResponse> call({
     String? jwt = '',
     String? reminderId = '',
+    String? urlBase = '',
   }) async {
-    final baseUrl = LembretesGroup.getBaseUrl();
+    final baseUrl = LembretesGroup.getBaseUrl(
+      urlBase: urlBase,
+    );
 
     return ApiManager.instance.makeApiCall(
-      callName: 'delete reminders',
-      apiUrl: '$baseUrl/api/reminders/$reminderId',
+      callName: 'Delete Reminders',
+      apiUrl: '${baseUrl}/api/reminders/${reminderId}',
       callType: ApiCallType.DELETE,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $jwt',
+        'Authorization': 'Bearer ${jwt}',
       },
       params: {},
       returnBody: true,
@@ -308,21 +334,100 @@ class UpdateUserCall {
     String? jwt = '',
     String? image = '',
     String? name = '',
+    String? urlBase = '',
   }) async {
-    final baseUrl = LembretesGroup.getBaseUrl();
+    final baseUrl = LembretesGroup.getBaseUrl(
+      urlBase: urlBase,
+    );
 
     final ffApiRequestBody = '''
 {
-  "name": "$name",
-  "image": "$image"
+  "name": "${name}",
+  "image": "${image}"
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'update user',
-      apiUrl: '$baseUrl/api/user',
+      callName: 'Update User',
+      apiUrl: '${baseUrl}/api/user',
       callType: ApiCallType.PUT,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $jwt',
+        'Authorization': 'Bearer ${jwt}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class DeleteRemidersHistoryCall {
+  Future<ApiCallResponse> call({
+    String? jwt = '',
+    String? urlBase = '',
+  }) async {
+    final baseUrl = LembretesGroup.getBaseUrl(
+      urlBase: urlBase,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Delete Remiders History',
+      apiUrl: '${baseUrl}/api/reminders',
+      callType: ApiCallType.DELETE,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${jwt}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateReminderCall {
+  Future<ApiCallResponse> call({
+    String? jwt = '',
+    String? reminderId = '',
+    String? title = '',
+    String? description = '',
+    int? type,
+    String? alert = '',
+    String? repeat = '',
+    String? duration = '',
+    String? color = '',
+    String? urlBase = '',
+  }) async {
+    final baseUrl = LembretesGroup.getBaseUrl(
+      urlBase: urlBase,
+    );
+
+    final ffApiRequestBody = '''
+{
+"title": "${escapeStringForJson(title)}",
+"description": "${escapeStringForJson(description)}",
+"type": ${type},
+"alert": "${escapeStringForJson(alert)}",
+"repeat": "${escapeStringForJson(repeat)}",
+"duration": "${escapeStringForJson(duration)}",
+"color": "${escapeStringForJson(color)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Update Reminder',
+      apiUrl: '${baseUrl}/api/reminders/${reminderId}',
+      callType: ApiCallType.PUT,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${jwt}',
       },
       params: {},
       body: ffApiRequestBody,
@@ -381,4 +486,15 @@ String _serializeJson(dynamic jsonVar, [bool isList = false]) {
     }
     return isList ? '[]' : '{}';
   }
+}
+
+String? escapeStringForJson(String? input) {
+  if (input == null) {
+    return null;
+  }
+  return input
+      .replaceAll('\\', '\\\\')
+      .replaceAll('"', '\\"')
+      .replaceAll('\n', '\\n')
+      .replaceAll('\t', '\\t');
 }

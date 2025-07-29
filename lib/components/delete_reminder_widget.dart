@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'delete_reminder_model.dart';
 export 'delete_reminder_model.dart';
 
@@ -43,8 +45,10 @@ class _DeleteReminderWidgetState extends State<DeleteReminderWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 280.0,
         height: 120.0,
@@ -57,11 +61,22 @@ class _DeleteReminderWidgetState extends State<DeleteReminderWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Apagar Lembrete',
+              FFLocalizations.of(context).getText(
+                'c1m1rzsj' /* Apagar Lembrete */,
+              ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Manrope',
+                    font: GoogleFonts.manrope(
+                      fontWeight:
+                          FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                    ),
                     fontSize: 16.0,
                     letterSpacing: 0.0,
+                    fontWeight:
+                        FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                   ),
             ),
             Row(
@@ -73,19 +88,28 @@ class _DeleteReminderWidgetState extends State<DeleteReminderWidget> {
                   onPressed: () async {
                     Navigator.pop(context);
                   },
-                  text: 'Cancelar',
+                  text: FFLocalizations.of(context).getText(
+                    'dqpmbr5a' /* Cancelar */,
+                  ),
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: const Color(0x009489F5),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: Color(0x009489F5),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Manrope',
+                          font: GoogleFonts.manrope(
+                            fontWeight: FontWeight.normal,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontStyle,
+                          ),
                           color: FlutterFlowTheme.of(context).primaryText,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
                         ),
                     elevation: 0.0,
                     borderSide: BorderSide(
@@ -100,11 +124,13 @@ class _DeleteReminderWidgetState extends State<DeleteReminderWidget> {
                         await LembretesGroup.deleteRemindersCall.call(
                       jwt: currentAuthenticationToken,
                       reminderId: widget.reminderId?.toString(),
+                      urlBase: FFAppState().urlBase,
                     );
 
                     if ((_model.deleteReminderResponse?.succeeded ?? true)) {
                       FFAppState().clearRemindersCache();
                       Navigator.pop(context);
+                      ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
@@ -113,7 +139,7 @@ class _DeleteReminderWidgetState extends State<DeleteReminderWidget> {
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                           ),
-                          duration: const Duration(milliseconds: 4000),
+                          duration: Duration(milliseconds: 4000),
                           backgroundColor: FlutterFlowTheme.of(context).error,
                         ),
                       );
@@ -129,7 +155,7 @@ class _DeleteReminderWidgetState extends State<DeleteReminderWidget> {
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                           ),
-                          duration: const Duration(milliseconds: 4000),
+                          duration: Duration(milliseconds: 4000),
                           backgroundColor: FlutterFlowTheme.of(context).error,
                         ),
                       );
@@ -137,24 +163,33 @@ class _DeleteReminderWidgetState extends State<DeleteReminderWidget> {
 
                     safeSetState(() {});
                   },
-                  text: 'Apagar',
-                  icon: const Icon(
+                  text: FFLocalizations.of(context).getText(
+                    'rcoq6onh' /* Apagar */,
+                  ),
+                  icon: Icon(
                     Icons.delete,
                     size: 15.0,
                   ),
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconAlignment: IconAlignment.start,
                     iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).error,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Manrope',
+                          font: GoogleFonts.manrope(
+                            fontWeight: FontWeight.normal,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontStyle,
+                          ),
                           color: Colors.white,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
                         ),
                     elevation: 0.0,
                     borderRadius: BorderRadius.circular(8.0),
@@ -162,7 +197,7 @@ class _DeleteReminderWidgetState extends State<DeleteReminderWidget> {
                 ),
               ],
             ),
-          ].divide(const SizedBox(height: 19.0)),
+          ].divide(SizedBox(height: 19.0)),
         ),
       ),
     );

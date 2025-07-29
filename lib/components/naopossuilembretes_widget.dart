@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'naopossuilembretes_model.dart';
 export 'naopossuilembretes_model.dart';
 
@@ -46,13 +47,24 @@ class _NaopossuilembretesWidgetState extends State<NaopossuilembretesWidget> {
             color: FlutterFlowTheme.of(context).primaryBackground,
           ),
           child: Align(
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Text(
-              'Não possui Lembretes',
+              FFLocalizations.of(context).getText(
+                'cnprv033' /* Não possui Lembretes */,
+              ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Manrope',
-                    fontSize: 22.0,
+                    font: GoogleFonts.manrope(
+                      fontWeight:
+                          FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                    ),
+                    fontSize: 20.0,
                     letterSpacing: 0.0,
+                    fontWeight:
+                        FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                   ),
             ),
           ),

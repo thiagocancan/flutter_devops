@@ -21,12 +21,12 @@ class CustomAuthManager {
     uid = null;
     userData = null;
     // Update the current user.
-    td1MobileAuthUserSubject.add(
-      Td1MobileAuthUser(loggedIn: false),
+    outNotesAuthUserSubject.add(
+      OutNotesAuthUser(loggedIn: false),
     );
   }
 
-  Future<Td1MobileAuthUser?> signIn({
+  Future<OutNotesAuthUser?> signIn({
     String? authenticationToken,
     String? refreshToken,
     DateTime? tokenExpiration,
@@ -62,7 +62,7 @@ class CustomAuthManager {
     );
   }
 
-  Td1MobileAuthUser? _updateCurrentUser({
+  OutNotesAuthUser? _updateCurrentUser({
     String? authenticationToken,
     String? refreshToken,
     DateTime? tokenExpiration,
@@ -72,19 +72,19 @@ class CustomAuthManager {
     this.authenticationToken = authenticationToken;
     this.refreshToken = refreshToken;
     this.tokenExpiration = tokenExpiration;
-    uid = authUid;
+    this.uid = authUid;
     this.userData = userData;
     // Update the current user stream.
-    final updatedUser = Td1MobileAuthUser(
+    final updatedUser = OutNotesAuthUser(
       loggedIn: true,
       uid: authUid,
       userData: userData,
     );
-    td1MobileAuthUserSubject.add(updatedUser);
+    outNotesAuthUserSubject.add(updatedUser);
 
     return updatedUser;
   }
 }
 
-Td1MobileAuthUser? currentUser;
+OutNotesAuthUser? currentUser;
 bool get loggedIn => currentUser?.loggedIn ?? false;

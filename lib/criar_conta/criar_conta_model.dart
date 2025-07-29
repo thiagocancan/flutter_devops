@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'criar_conta_widget.dart' show CriarContaWidget;
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,9 @@ class CriarContaModel extends FlutterFlowModel<CriarContaWidget> {
   String? Function(BuildContext, String?)? textController1Validator;
   String? _textController1Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Campo Obrigatõrio';
+      return FFLocalizations.of(context).getText(
+        'smaradjh' /* Campo Obrigatõrio */,
+      );
     }
 
     return null;
@@ -25,7 +28,9 @@ class CriarContaModel extends FlutterFlowModel<CriarContaWidget> {
   String? Function(BuildContext, String?)? textController2Validator;
   String? _textController2Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Campo Obrigatõrio';
+      return FFLocalizations.of(context).getText(
+        'yn8jes3v' /* Campo Obrigatõrio */,
+      );
     }
 
     if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
@@ -41,11 +46,15 @@ class CriarContaModel extends FlutterFlowModel<CriarContaWidget> {
   String? Function(BuildContext, String?)? textController3Validator;
   String? _textController3Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Campo Obrigatõrio';
+      return FFLocalizations.of(context).getText(
+        'h4k1dgyx' /* Campo Obrigatõrio */,
+      );
     }
 
     if (val.length < 6) {
-      return 'É necessário no mínimo 6 caracteres ';
+      return FFLocalizations.of(context).getText(
+        'snzwct20' /* É necessário no mínimo 6 carac... */,
+      );
     }
 
     return null;
@@ -58,11 +67,15 @@ class CriarContaModel extends FlutterFlowModel<CriarContaWidget> {
   String? Function(BuildContext, String?)? textController4Validator;
   String? _textController4Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return FFLocalizations.of(context).getText(
+        'suhxyw8p' /* Field is required */,
+      );
     }
 
     if (val.length < 6) {
-      return 'É necessário no mínimo 6 caracteres ';
+      return FFLocalizations.of(context).getText(
+        'fggy3551' /* É necessário no mínimo 6 carac... */,
+      );
     }
 
     return null;

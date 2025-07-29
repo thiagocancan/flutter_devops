@@ -7,14 +7,17 @@ import '/backend/schema/structs/index.dart';
 
 import '/auth/custom_auth/custom_auth_user_provider.dart';
 
-import '/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+
+import '/index.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
 
 const kTransitionInfoKey = '__transition_info__';
+
+GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
 
 class AppStateNotifier extends ChangeNotifier {
   AppStateNotifier._();
@@ -22,8 +25,8 @@ class AppStateNotifier extends ChangeNotifier {
   static AppStateNotifier? _instance;
   static AppStateNotifier get instance => _instance ??= AppStateNotifier._();
 
-  Td1MobileAuthUser? initialUser;
-  Td1MobileAuthUser? user;
+  OutNotesAuthUser? initialUser;
+  OutNotesAuthUser? user;
   bool showSplashImage = true;
   String? _redirectLocation;
 
@@ -48,7 +51,7 @@ class AppStateNotifier extends ChangeNotifier {
   /// to perform subsequent actions (such as navigation) afterwards.
   void updateNotifyOnAuthChange(bool notify) => notifyOnAuthChange = notify;
 
-  void update(Td1MobileAuthUser newUser) {
+  void update(OutNotesAuthUser newUser) {
     final shouldUpdate =
         user?.uid == null || newUser.uid == null || user?.uid != newUser.uid;
     initialUser ??= newUser;
@@ -73,64 +76,76 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
+      navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const HomeWidget() : const BoasvindasWidget(),
+          appStateNotifier.loggedIn ? HomeWidget() : BoasvindasWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const HomeWidget() : const BoasvindasWidget(),
+              appStateNotifier.loggedIn ? HomeWidget() : BoasvindasWidget(),
         ),
         FFRoute(
-          name: 'Login',
-          path: '/login',
-          builder: (context, params) => const LoginWidget(),
+          name: LoginWidget.routeName,
+          path: LoginWidget.routePath,
+          builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
-          name: 'Boasvindas',
-          path: '/boasvindas',
-          builder: (context, params) => const BoasvindasWidget(),
+          name: BoasvindasWidget.routeName,
+          path: BoasvindasWidget.routePath,
+          builder: (context, params) => BoasvindasWidget(),
         ),
         FFRoute(
-          name: 'CriarConta',
-          path: '/criarConta',
-          builder: (context, params) => const CriarContaWidget(),
+          name: CriarContaWidget.routeName,
+          path: CriarContaWidget.routePath,
+          builder: (context, params) => CriarContaWidget(),
         ),
         FFRoute(
-          name: 'Home',
-          path: '/home',
-          builder: (context, params) => const HomeWidget(),
+          name: HomeWidget.routeName,
+          path: HomeWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => HomeWidget(),
         ),
         FFRoute(
-          name: 'Historico',
-          path: '/historico',
-          builder: (context, params) => const HistoricoWidget(),
+          name: HistoricoWidget.routeName,
+          path: HistoricoWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => HistoricoWidget(),
         ),
         FFRoute(
-          name: 'notificaoes',
-          path: '/notificaoes',
-          builder: (context, params) => const NotificaoesWidget(),
+          name: NotificaoesWidget.routeName,
+          path: NotificaoesWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => NotificaoesWidget(),
         ),
         FFRoute(
-          name: 'perfil1',
-          path: '/perfil1',
-          builder: (context, params) => const Perfil1Widget(),
+          name: PerfilWidget.routeName,
+          path: PerfilWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => PerfilWidget(),
         ),
         FFRoute(
-          name: 'calendario',
-          path: '/calendario',
-          builder: (context, params) => const CalendarioWidget(),
+          name: CalendarioWidget.routeName,
+          path: CalendarioWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => CalendarioWidget(),
         ),
         FFRoute(
-          name: 'editar_usuario',
-          path: '/editarUsuario',
-          builder: (context, params) => const EditarUsuarioWidget(),
+          name: UrlBaseWidget.routeName,
+          path: UrlBaseWidget.routePath,
+          builder: (context, params) => UrlBaseWidget(),
         ),
         FFRoute(
-          name: 'Termos',
-          path: '/termos',
-          builder: (context, params) => const TermosWidget(),
+          name: EditarUsuarioWidget.routeName,
+          path: EditarUsuarioWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => EditarUsuarioWidget(),
+        ),
+        FFRoute(
+          name: TermosWidget.routeName,
+          path: TermosWidget.routePath,
+          builder: (context, params) => TermosWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -317,11 +332,11 @@ class FFRoute {
           final child = appStateNotifier.loading
               ? Center(
                   child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
+                    width: 30.0,
+                    height: 30.0,
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
+                        FlutterFlowTheme.of(context).iltan,
                       ),
                     ),
                   ),
@@ -368,7 +383,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {
